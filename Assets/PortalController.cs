@@ -5,24 +5,33 @@ using UnityEngine.Rendering;
 
 public class PortalController : MonoBehaviour {
 
+	public GameObject strangerSprite;
 	public Material[] materials;
 	public Transform device;
 
 	bool wasInfront;
 	bool isInFront;
 	bool insidePortal;
+	bool animCanPlay = true;
+	Animation strangerAnim;
 
 	void Start(){
 		SetMaterials (false);
+		strangerAnim = strangerSprite.GetComponent<Animation> ();
 	}
 
 	void SetMaterials(bool FullRender){
 		if (FullRender) {
+			animCanPlay = true;
+			strangerSprite.GetComponent<SpriteRenderer> ().enabled = false;
 			foreach (var mat in materials) {
 				mat.SetInt ("_StencilTest", (int)CompareFunction.NotEqual);
 				Debug.Log ("Inside");
 			}
 		} else {
+			if (animCanPlay) {
+				strangerSprite.GetComponent<SpriteRenderer> ().enabled = true;
+			}
 			foreach (var mat in materials) {
 				mat.SetInt ("_StencilTest", (int)CompareFunction.Equal);
 				Debug.Log ("Outside");
@@ -41,6 +50,10 @@ public class PortalController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 		wasInfront = GetIsInFront ();
+		if (!strangerAnim.isPlaying && animCanPlay && !insidePortal) {
+			animCanPlay = false;
+			strangerAnim.Play ();
+		}
 	}
 
 	void OnTriggerStay(Collider col){
