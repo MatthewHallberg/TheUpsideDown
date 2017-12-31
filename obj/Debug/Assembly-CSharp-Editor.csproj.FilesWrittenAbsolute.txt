@@ -50,3 +50,7 @@
 /Users/matthew/Desktop/TheUpsideDown/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
 /Users/matthew/Desktop/TheUpsideDown/Temp/bin/Debug/Assembly-CSharp-Editor-firstpass.dll
 /Users/matthew/Desktop/TheUpsideDown/Temp/bin/Debug/Assembly-CSharp-Editor-firstpass.dll.mdb
+/Users/matthew/Desktop/TheUpsideDown/Temp/bin/Debug/Vuforia.UnityExtensions.Editor.dll
+/Users/matthew/Desktop/TheUpsideDown/Temp/bin/Debug/Vuforia.UnityExtensions.dll
+/Users/matthew/Desktop/TheUpsideDown/Temp/bin/Debug/UnityEngine.Advertisements.dll
+/Users/matthew/Desktop/TheUpsideDown/Temp/bin/Debug/UnityEngine.StandardEvents.dll

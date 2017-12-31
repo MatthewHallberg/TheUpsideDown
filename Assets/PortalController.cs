@@ -6,28 +6,51 @@ using UnityEngine.Rendering;
 public class PortalController : MonoBehaviour {
 
 	public Material[] materials;
+	public Transform device;
+
+	bool wasInfront;
+	bool isInFront;
+	bool insidePortal;
 
 	void Start(){
-		OutsidePortal ();
+		SetMaterials (false);
 	}
 
-	void OutsidePortal(){
-		foreach (var mat in materials) {
-			mat.SetInt ("_StencilTest", (int)CompareFunction.Equal);
+	void SetMaterials(bool FullRender){
+		if (FullRender) {
+			foreach (var mat in materials) {
+				mat.SetInt ("_StencilTest", (int)CompareFunction.NotEqual);
+				Debug.Log ("Inside");
+			}
+		} else {
+			foreach (var mat in materials) {
+				mat.SetInt ("_StencilTest", (int)CompareFunction.Equal);
+				Debug.Log ("Outside");
+			}
 		}
 	}
 
-	void InsidePortal(){
-		foreach (var mat in materials) {
-			mat.SetInt ("_StencilTest", (int)CompareFunction.NotEqual);
+	bool GetIsInFront(){
+		Vector3 pos = transform.InverseTransformPoint (device.position);
+		if (pos.z >= 0) {
+			return true;
+		} else {
+			return false;
 		}
+	}
+
+	void OnTriggerEnter(Collider col){
+		wasInfront = GetIsInFront ();
 	}
 
 	void OnTriggerStay(Collider col){
-		if (transform.position.z < col.transform.position.z) {
-			InsidePortal ();
-		} else {
-			OutsidePortal ();
-		}		
+
+		bool isInFront = GetIsInFront ();
+
+		if ((isInFront && !wasInfront) || (wasInfront && !isInFront)) {
+			insidePortal = !insidePortal;
+			SetMaterials (insidePortal);
+		}
+		wasInfront = isInFront;
 	}
 }

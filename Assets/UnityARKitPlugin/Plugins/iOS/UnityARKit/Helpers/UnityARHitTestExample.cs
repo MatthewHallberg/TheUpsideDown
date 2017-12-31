@@ -7,8 +7,6 @@ namespace UnityEngine.XR.iOS
 	{
 		public Transform m_HitTransform;
 
-		public List<ParticleController> partControllerList = new List<ParticleController>();
-
         bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
         {
             List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
@@ -18,23 +16,14 @@ namespace UnityEngine.XR.iOS
                     m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
                     m_HitTransform.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);
                     Debug.Log (string.Format ("x:{0:0.######} y:{1:0.######} z:{2:0.######}", m_HitTransform.position.x, m_HitTransform.position.y, m_HitTransform.position.z));
-					//set rotation to look at camera
-					Vector3 currentAngle = transform.eulerAngles;
+					Vector3 currAngle = transform.eulerAngles;
 					transform.LookAt (Camera.main.transform);
-					transform.rotation = Quaternion.Euler (currentAngle.x,transform.eulerAngles.y, currentAngle.z);
-					//simulate all particles
-					SimulateParticles();
+					transform.eulerAngles = new Vector3 (currAngle.x, transform.eulerAngles.y, currAngle.z);
                     return true;
                 }
             }
             return false;
         }
-
-		void SimulateParticles(){
-			foreach (ParticleController particleSystem in partControllerList) {
-				particleSystem.SampleParticles ();
-			}
-		}
 		
 		// Update is called once per frame
 		void Update () {
