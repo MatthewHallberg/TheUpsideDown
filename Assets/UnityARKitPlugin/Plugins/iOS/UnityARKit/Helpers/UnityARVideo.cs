@@ -9,6 +9,8 @@ namespace UnityEngine.XR.iOS
     public class UnityARVideo : MonoBehaviour
     {
         public Material m_ClearMaterial;
+		[HideInInspector]
+		public bool shouldRender = true;
 
         private CommandBuffer m_VideoCommandBuffer;
         private Texture2D _videoTextureY;
@@ -25,11 +27,11 @@ namespace UnityEngine.XR.iOS
 
 		void UpdateFrame(UnityARCamera cam)
 		{
-			_displayTransform = new Matrix4x4();
-			_displayTransform.SetColumn(0, cam.displayTransform.column0);
-			_displayTransform.SetColumn(1, cam.displayTransform.column1);
-			_displayTransform.SetColumn(2, cam.displayTransform.column2);
-			_displayTransform.SetColumn(3, cam.displayTransform.column3);		
+			_displayTransform = new Matrix4x4 ();
+			_displayTransform.SetColumn (0, cam.displayTransform.column0);
+			_displayTransform.SetColumn (1, cam.displayTransform.column1);
+			_displayTransform.SetColumn (2, cam.displayTransform.column2);
+			_displayTransform.SetColumn (3, cam.displayTransform.column3);
 		}
 
 		void InitializeCommandBuffer()
@@ -101,15 +103,16 @@ namespace UnityEngine.XR.iOS
 
 		public void OnPreRender()
 		{
+			if (shouldRender) {
+				if (!bCommandBufferInitialized) {
+					InitializeCommandBuffer ();
+				}
 
-			if (!bCommandBufferInitialized) {
-				InitializeCommandBuffer ();
+				m_ClearMaterial.SetTexture ("_textureY", _videoTextureY);
+				m_ClearMaterial.SetTexture ("_textureCbCr", _videoTextureCbCr);
+
+				m_ClearMaterial.SetMatrix ("_DisplayTransform", _displayTransform);
 			}
-
-			m_ClearMaterial.SetTexture("_textureY", _videoTextureY);
-			m_ClearMaterial.SetTexture("_textureCbCr", _videoTextureCbCr);
-
-			m_ClearMaterial.SetMatrix("_DisplayTransform", _displayTransform);
 		}
  
 #endif

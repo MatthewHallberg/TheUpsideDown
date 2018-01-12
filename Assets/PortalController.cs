@@ -3,67 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PortalController : MonoBehaviour {
+namespace UnityEngine.XR.iOS
+{
+	public class PortalController : MonoBehaviour {
+		
+		private static PortalController _instance;
+		public static PortalController Instance { get { return _instance; } }
 
-	public GameObject strangerSprite;
-	public Material[] materials;
-	public Transform device;
+		public GameObject strangerSprite;
+		public Material[] materials;
+		public MeshRenderer meshRender;
 
-	bool wasInfront;
-	bool isInFront;
-	bool insidePortal;
-	bool animCanPlay = true;
-	Animation strangerAnim;
+		private bool isInside = false;
+		private bool isOutside = true;
 
-	void Start(){
-		SetMaterials (false);
-		strangerAnim = strangerSprite.GetComponent<Animation> ();
-	}
 
-	void SetMaterials(bool FullRender){
-		if (FullRender) {
-			animCanPlay = true;
-			strangerSprite.GetComponent<SpriteRenderer> ().enabled = false;
+		public Animation strangerAnim;
+
+		void Awake(){
+			_instance = this;
+		}
+
+		void Start(){
+			OutsidePortal ();
+		}
+
+		public void InsidePortal(){
+			print ("IN");
+			StartCoroutine (DelayChangeMat (6));
+		}
+
+		void OnTriggerStay(Collider col){
+			Vector3 playerPos = Camera.main.transform.position + Camera.main.transform.forward * Camera.main.nearClipPlane;
+			if (transform.InverseTransformPoint (playerPos).z <= 0) {
+				if (isOutside) {
+					isOutside = false;
+					isInside = true;
+					InsidePortal ();
+				}
+			} else {
+				if (isInside) {
+					isInside = false;
+					isOutside = true;
+					OutsidePortal ();
+				}
+			}
+
+			if (Mathf.Abs (transform.InverseTransformPoint (playerPos).z) < .5f) {
+				meshRender.enabled = false;
+				print ("HERE!");
+			} else {
+				meshRender.enabled = true;
+			}
+		}
+
+		public void OutsidePortal(){
+			print ("OUT");
+			StartCoroutine (DelayChangeMat (3));
+		}
+
+		IEnumerator DelayChangeMat(int stencilNum){
+			print ("FUCK!");
+			yield return new WaitForEndOfFrame ();
 			foreach (var mat in materials) {
-				mat.SetInt ("_StencilTest", (int)CompareFunction.NotEqual);
-				Debug.Log ("Inside");
-			}
-		} else {
-			if (animCanPlay) {
-				strangerSprite.GetComponent<SpriteRenderer> ().enabled = true;
-			}
-			foreach (var mat in materials) {
-				mat.SetInt ("_StencilTest", (int)CompareFunction.Equal);
-				Debug.Log ("Outside");
+				mat.SetInt ("_StencilTest", stencilNum);
 			}
 		}
-	}
-
-	bool GetIsInFront(){
-		Vector3 pos = transform.InverseTransformPoint (device.position);
-		if (pos.z >= 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	void OnTriggerEnter(Collider col){
-		wasInfront = GetIsInFront ();
-		if (!strangerAnim.isPlaying && animCanPlay && !insidePortal) {
-			animCanPlay = false;
-			strangerAnim.Play ();
-		}
-	}
-
-	void OnTriggerStay(Collider col){
-
-		bool isInFront = GetIsInFront ();
-
-		if ((isInFront && !wasInfront) || (wasInfront && !isInFront)) {
-			insidePortal = !insidePortal;
-			SetMaterials (insidePortal);
-		}
-		wasInfront = isInFront;
 	}
 }
+

@@ -12,7 +12,7 @@ Shader "Custom/SpeedTreeStencil"
         _Cutoff ("Alpha Cutoff", Range(0,1)) = 0.333
         [MaterialEnum(Off,0,Front,1,Back,2)] _Cull ("Cull", Int) = 2
         [MaterialEnum(None,0,Fastest,1,Fast,2,Better,3,Best,4,Palm,5)] _WindQuality ("Wind Quality", Range(0,5)) = 0
-        [Enum(Equal,3,NotEqual,6)] _StencilTest ("Stencil Test", int) = 6
+         _StencilTest ("Stencil Test", int) = 6
     }
 
     // targeting SM3.0+

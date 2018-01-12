@@ -6,7 +6,7 @@ Properties {
     [Gamma] _Exposure ("Exposure", Range(0, 8)) = 1.0
     _Rotation ("Rotation", Range(0, 360)) = 0
     [NoScaleOffset] _Tex ("Cubemap   (HDR)", Cube) = "grey" {}
-    [Enum(Equal,3,NotEqual,6)] _StencilTest ("Stencil Test", int) = 6
+    _StencilTest ("Stencil Test", int) = 6
 }
  
 SubShader {

@@ -7,7 +7,7 @@
 Shader "Custom/DiffuseStencil" {
 Properties {
     _MainTex ("Base (RGB)", 2D) = "white" {}
-    [Enum(Equal,3,NotEqual,6)] _StencilTest ("Stencil Test", int) = 6
+    _StencilTest ("Stencil Test", int) = 6
 }
 SubShader {
 

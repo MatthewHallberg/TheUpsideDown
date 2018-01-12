@@ -9,7 +9,7 @@
 Shader "Custom/Particles/Alpha Blended" {
 Properties {
     _MainTex ("Particle Texture", 2D) = "white" {}
-    [Enum(Equal,3,NotEqual,6)] _StencilTest ("Stencil Test", int) = 6
+    _StencilTest ("Stencil Test", int) = 6
 }
 
 Category {
