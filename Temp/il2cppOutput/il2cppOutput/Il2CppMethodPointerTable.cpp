@@ -8804,6 +8804,8 @@ extern "C" void Transform_INTERNAL_get_localPosition_m1816167803 ();
 extern "C" void Transform_INTERNAL_set_localPosition_m1936358505 ();
 extern "C" void Transform_get_eulerAngles_m2743581774 ();
 extern "C" void Transform_set_eulerAngles_m135219616 ();
+extern "C" void Transform_get_localEulerAngles_m2136926248 ();
+extern "C" void Transform_set_localEulerAngles_m4202601546 ();
 extern "C" void Transform_get_forward_m747522392 ();
 extern "C" void Transform_get_rotation_m3502953881 ();
 extern "C" void Transform_set_rotation_m3524318132 ();
@@ -11363,6 +11365,17 @@ extern "C" void BoxSlider_OnInitializePotentialDrag_m3372624533 ();
 extern "C" void BoxSlider_UnityEngine_UI_ICanvasElement_get_transform_m402810124 ();
 extern "C" void BoxSlider_UnityEngine_UI_ICanvasElement_IsDestroyed_m1973549323 ();
 extern "C" void BoxSliderEvent__ctor_m691207403 ();
+extern "C" void AnimationBehavior__ctor_m1672455508 ();
+extern "C" void AnimationBehavior_Start_m4223653232 ();
+extern "C" void AnimationBehavior_PlayAnim_m2681002239 ();
+extern "C" void AnimationBehavior_EnableSprite_m2225441908 ();
+extern "C" void AnimationBehavior_DelayEnable_m4091171966 ();
+extern "C" void U3CDelayEnableU3Ec__Iterator0__ctor_m2445427161 ();
+extern "C" void U3CDelayEnableU3Ec__Iterator0_MoveNext_m4241581195 ();
+extern "C" void U3CDelayEnableU3Ec__Iterator0_System_Collections_Generic_IEnumeratorU3CobjectU3E_get_Current_m419221055 ();
+extern "C" void U3CDelayEnableU3Ec__Iterator0_System_Collections_IEnumerator_get_Current_m2011380084 ();
+extern "C" void U3CDelayEnableU3Ec__Iterator0_Dispose_m3121035114 ();
+extern "C" void U3CDelayEnableU3Ec__Iterator0_Reset_m2837205412 ();
 extern "C" void ARFaceAnchor__ctor_m2629506774 ();
 extern "C" void ARFaceAnchor_get_identifierStr_m1822207425 ();
 extern "C" void ARFaceAnchor_get_transform_m2525862755 ();
@@ -11427,9 +11440,10 @@ extern "C" void PortalController__ctor_m3328401121 ();
 extern "C" void PortalController_get_Instance_m339200384 ();
 extern "C" void PortalController_Awake_m1384204497 ();
 extern "C" void PortalController_Start_m3009747453 ();
-extern "C" void PortalController_InsidePortal_m3524180360 ();
+extern "C" void PortalController_OnTriggerEnter_m443862074 ();
 extern "C" void PortalController_OnTriggerStay_m2646705867 ();
 extern "C" void PortalController_OutsidePortal_m2602936438 ();
+extern "C" void PortalController_InsidePortal_m3524180360 ();
 extern "C" void PortalController_DelayChangeMat_m3951100846 ();
 extern "C" void U3CDelayChangeMatU3Ec__Iterator0__ctor_m3728003104 ();
 extern "C" void U3CDelayChangeMatU3Ec__Iterator0_MoveNext_m2025115279 ();
@@ -12057,7 +12071,7 @@ extern "C" void WaypointProgressTracker_Start_m1081584341 ();
 extern "C" void WaypointProgressTracker_Reset_m1659377711 ();
 extern "C" void WaypointProgressTracker_Update_m572671677 ();
 extern "C" void WaypointProgressTracker_OnDrawGizmos_m2504516940 ();
-extern const Il2CppMethodPointer g_MethodPointers[12039] = 
+extern const Il2CppMethodPointer g_MethodPointers[12053] = 
 {
 	Locale_GetText_m3374010885,
 	Locale_GetText_m1601577974,
@@ -20845,6 +20859,8 @@ extern const Il2CppMethodPointer g_MethodPointers[12039] =
 	Transform_INTERNAL_set_localPosition_m1936358505,
 	Transform_get_eulerAngles_m2743581774,
 	Transform_set_eulerAngles_m135219616,
+	Transform_get_localEulerAngles_m2136926248,
+	Transform_set_localEulerAngles_m4202601546,
 	Transform_get_forward_m747522392,
 	Transform_get_rotation_m3502953881,
 	Transform_set_rotation_m3524318132,
@@ -23404,6 +23420,17 @@ extern const Il2CppMethodPointer g_MethodPointers[12039] =
 	BoxSlider_UnityEngine_UI_ICanvasElement_get_transform_m402810124,
 	BoxSlider_UnityEngine_UI_ICanvasElement_IsDestroyed_m1973549323,
 	BoxSliderEvent__ctor_m691207403,
+	AnimationBehavior__ctor_m1672455508,
+	AnimationBehavior_Start_m4223653232,
+	AnimationBehavior_PlayAnim_m2681002239,
+	AnimationBehavior_EnableSprite_m2225441908,
+	AnimationBehavior_DelayEnable_m4091171966,
+	U3CDelayEnableU3Ec__Iterator0__ctor_m2445427161,
+	U3CDelayEnableU3Ec__Iterator0_MoveNext_m4241581195,
+	U3CDelayEnableU3Ec__Iterator0_System_Collections_Generic_IEnumeratorU3CobjectU3E_get_Current_m419221055,
+	U3CDelayEnableU3Ec__Iterator0_System_Collections_IEnumerator_get_Current_m2011380084,
+	U3CDelayEnableU3Ec__Iterator0_Dispose_m3121035114,
+	U3CDelayEnableU3Ec__Iterator0_Reset_m2837205412,
 	ARFaceAnchor__ctor_m2629506774,
 	ARFaceAnchor_get_identifierStr_m1822207425,
 	ARFaceAnchor_get_transform_m2525862755,
@@ -23468,9 +23495,10 @@ extern const Il2CppMethodPointer g_MethodPointers[12039] =
 	PortalController_get_Instance_m339200384,
 	PortalController_Awake_m1384204497,
 	PortalController_Start_m3009747453,
-	PortalController_InsidePortal_m3524180360,
+	PortalController_OnTriggerEnter_m443862074,
 	PortalController_OnTriggerStay_m2646705867,
 	PortalController_OutsidePortal_m2602936438,
+	PortalController_InsidePortal_m3524180360,
 	PortalController_DelayChangeMat_m3951100846,
 	U3CDelayChangeMatU3Ec__Iterator0__ctor_m3728003104,
 	U3CDelayChangeMatU3Ec__Iterator0_MoveNext_m2025115279,

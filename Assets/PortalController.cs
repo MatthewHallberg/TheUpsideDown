@@ -10,15 +10,14 @@ namespace UnityEngine.XR.iOS
 		private static PortalController _instance;
 		public static PortalController Instance { get { return _instance; } }
 
-		public GameObject strangerSprite;
 		public Material[] materials;
 		public MeshRenderer meshRenderer;
 		public UnityARVideo unityARVideo;
 
-		private bool isInside = false;
-		private bool isOutside = true;
+		public AnimationBehavior animBehavior;
 
-		public Animation strangerAnim;
+		private bool isInside = false;
+		public bool isOutside = true;
 
 		void Awake(){
 			_instance = this;
@@ -28,8 +27,10 @@ namespace UnityEngine.XR.iOS
 			OutsidePortal ();
 		}
 
-		public void InsidePortal(){
-			StartCoroutine (DelayChangeMat (6));
+		void OnTriggerEnter(Collider col){
+			if (isOutside) {
+				animBehavior.PlayAnim ();
+			}
 		}
 
 		void OnTriggerStay(Collider col){
@@ -39,18 +40,26 @@ namespace UnityEngine.XR.iOS
 					isOutside = false;
 					isInside = true;
 					InsidePortal ();
+					animBehavior.EnableSprite (false);
 				}
 			} else {
 				if (isInside) {
 					isInside = false;
 					isOutside = true;
 					OutsidePortal ();
+					animBehavior.EnableSprite (true);
 				}
 			}
 		}
 
 		public void OutsidePortal(){
 			StartCoroutine (DelayChangeMat (3));
+			animBehavior.EnableSprite (true);
+		}
+
+		public void InsidePortal(){
+			StartCoroutine (DelayChangeMat (6));
+			animBehavior.EnableSprite (false);
 		}
 
 		IEnumerator DelayChangeMat(int stencilNum){

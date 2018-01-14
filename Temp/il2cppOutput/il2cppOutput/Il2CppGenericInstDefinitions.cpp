@@ -393,6 +393,7 @@ extern const Il2CppType RawImage_t3182918964_0_0_0;
 extern const Il2CppType InputField_t3762917431_0_0_0;
 extern const Il2CppType BoxSlider_t2380464200_0_0_0;
 extern const Il2CppType UnityARUserAnchorComponent_t969893952_0_0_0;
+extern const Il2CppType Animation_t3648466861_0_0_0;
 extern const Il2CppType serializableFromEditorMessage_t3245497382_0_0_0;
 extern const Il2CppType DontDestroyOnLoad_t1456007215_0_0_0;
 extern const Il2CppType MeshFilter_t3523625662_0_0_0;
@@ -400,7 +401,6 @@ extern const Il2CppType StandaloneInputModule_t2760469101_0_0_0;
 extern const Il2CppType ParticleSystemMultiplier_t2770350653_0_0_0;
 extern const Il2CppType ObjectResetter_t639177103_0_0_0;
 extern const Il2CppType AudioSource_t3935305588_0_0_0;
-extern const Il2CppType Animation_t3648466861_0_0_0;
 extern const Il2CppType SpringJoint_t1912369980_0_0_0;
 extern const Il2CppType IEnumerable_1_t1615002100_gp_0_0_0_0;
 extern const Il2CppType Array_InternalArray__IEnumerable_GetEnumerator_m370636962_gp_0_0_0_0;
@@ -1505,6 +1505,8 @@ static const RuntimeType* GenInst_BoxSlider_t2380464200_0_0_0_Types[] = { (&BoxS
 extern const Il2CppGenericInst GenInst_BoxSlider_t2380464200_0_0_0 = { 1, GenInst_BoxSlider_t2380464200_0_0_0_Types };
 static const RuntimeType* GenInst_UnityARUserAnchorComponent_t969893952_0_0_0_Types[] = { (&UnityARUserAnchorComponent_t969893952_0_0_0) };
 extern const Il2CppGenericInst GenInst_UnityARUserAnchorComponent_t969893952_0_0_0 = { 1, GenInst_UnityARUserAnchorComponent_t969893952_0_0_0_Types };
+static const RuntimeType* GenInst_Animation_t3648466861_0_0_0_Types[] = { (&Animation_t3648466861_0_0_0) };
+extern const Il2CppGenericInst GenInst_Animation_t3648466861_0_0_0 = { 1, GenInst_Animation_t3648466861_0_0_0_Types };
 static const RuntimeType* GenInst_serializableFromEditorMessage_t3245497382_0_0_0_Types[] = { (&serializableFromEditorMessage_t3245497382_0_0_0) };
 extern const Il2CppGenericInst GenInst_serializableFromEditorMessage_t3245497382_0_0_0 = { 1, GenInst_serializableFromEditorMessage_t3245497382_0_0_0_Types };
 static const RuntimeType* GenInst_DontDestroyOnLoad_t1456007215_0_0_0_Types[] = { (&DontDestroyOnLoad_t1456007215_0_0_0) };
@@ -1519,8 +1521,6 @@ static const RuntimeType* GenInst_ObjectResetter_t639177103_0_0_0_Types[] = { (&
 extern const Il2CppGenericInst GenInst_ObjectResetter_t639177103_0_0_0 = { 1, GenInst_ObjectResetter_t639177103_0_0_0_Types };
 static const RuntimeType* GenInst_AudioSource_t3935305588_0_0_0_Types[] = { (&AudioSource_t3935305588_0_0_0) };
 extern const Il2CppGenericInst GenInst_AudioSource_t3935305588_0_0_0 = { 1, GenInst_AudioSource_t3935305588_0_0_0_Types };
-static const RuntimeType* GenInst_Animation_t3648466861_0_0_0_Types[] = { (&Animation_t3648466861_0_0_0) };
-extern const Il2CppGenericInst GenInst_Animation_t3648466861_0_0_0 = { 1, GenInst_Animation_t3648466861_0_0_0_Types };
 static const RuntimeType* GenInst_SpringJoint_t1912369980_0_0_0_Types[] = { (&SpringJoint_t1912369980_0_0_0) };
 extern const Il2CppGenericInst GenInst_SpringJoint_t1912369980_0_0_0 = { 1, GenInst_SpringJoint_t1912369980_0_0_0_Types };
 static const RuntimeType* GenInst_Int32_t2950945753_0_0_0_Int32_t2950945753_0_0_0_Types[] = { (&Int32_t2950945753_0_0_0), (&Int32_t2950945753_0_0_0) };
@@ -2374,6 +2374,7 @@ extern const Il2CppGenericInst* const g_Il2CppGenericInstTable[670] =
 	&GenInst_InputField_t3762917431_0_0_0,
 	&GenInst_BoxSlider_t2380464200_0_0_0,
 	&GenInst_UnityARUserAnchorComponent_t969893952_0_0_0,
+	&GenInst_Animation_t3648466861_0_0_0,
 	&GenInst_serializableFromEditorMessage_t3245497382_0_0_0,
 	&GenInst_DontDestroyOnLoad_t1456007215_0_0_0,
 	&GenInst_MeshFilter_t3523625662_0_0_0,
@@ -2381,7 +2382,6 @@ extern const Il2CppGenericInst* const g_Il2CppGenericInstTable[670] =
 	&GenInst_ParticleSystemMultiplier_t2770350653_0_0_0,
 	&GenInst_ObjectResetter_t639177103_0_0_0,
 	&GenInst_AudioSource_t3935305588_0_0_0,
-	&GenInst_Animation_t3648466861_0_0_0,
 	&GenInst_SpringJoint_t1912369980_0_0_0,
 	&GenInst_Int32_t2950945753_0_0_0_Int32_t2950945753_0_0_0,
 	&GenInst_CustomAttributeNamedArgument_t287865710_0_0_0_CustomAttributeNamedArgument_t287865710_0_0_0,
